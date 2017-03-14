@@ -12,7 +12,9 @@ object Hammurabi {
   var acresOwned = 1000
   var pricePerAcre = 19       // each acre cost this many bushels
   var plagueDeaths = 0
-  var pricePerAcrePreviousYear : Int = pricePerAcre
+  var pricePerAcrePreviousYear : Int = pricePerAcre //Hammurabi acreMarket
+  var startingPopulation : Int = population  //For reports
+  var startingAcres : Int = acresOwned      // For reports
 
   def printIntroductoryMessage (): Unit = {
     println("""Congratulations, you are the newest ruler of ancient Samaria, elected

@@ -1,5 +1,4 @@
 
-object ScalaWarmUp extends App{
 
   object ScalaWarmUp extends App {
 
@@ -19,5 +18,7 @@ object ScalaWarmUp extends App{
     for(i <- 1 to 25)
     // println(s"Our number is $i and it has a square of ${i * i} and a cube of ${i * i * i}")
       println("our number is "+i+" and it has a square of "+i*i+ "and a cube of "+ i* i * i )
+
+
   }
-}
+

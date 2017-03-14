@@ -1,5 +1,3 @@
-package WorkSheetScala1
-
 object ScalaWarmUp extends App {
 
   //val num = readLine("Give me an integer please \n")
@@ -21,4 +19,3 @@ object ScalaWarmUp extends App {
 
 
 }
-

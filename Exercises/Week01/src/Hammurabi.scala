@@ -83,11 +83,14 @@ object Hammurabi {
         |You finished the game.
         |But lets see your results as Hammurabi.
         |""".stripMargin)
+    
     if(plagueCount * 10 >= 20 )
       println(s"Plague mess up you game.${if(acresResult >0) " Fortunately" else " Unfortunately" } \n" +
-        s" you${if(acresResult >0) " managed to increase your land by"+acresResult+" acres. You where a successful Hammurabi. \n "
-        else " didn't manage to increase your land and you failed as Hammurabi." }  ")
-    if(plagueCount * 10 < 20  && population < 1.3 * startingPopulation || acresOwned < 1.5 * startingAcres) println("You failed as Hammurabi, please try again")
+        s" you${if(acresResult >0) " managed to increase your land by"+acresResult+" acres. " +
+          "You where a successful Hammurabi. \n " else " didn't manage to increase your " +
+          "land and you failed as Hammurabi." }  ")
+    if(plagueCount * 10 < 20  && population < 1.3 * startingPopulation || acresOwned < 1.5 * startingAcres)
+      println("You failed as Hammurabi, please try again")
    if(plagueCount * 10 < 20 && population > 1.3 * startingPopulation || acresOwned > 1.5 * startingAcres) {
      println(
        s"""You increased your land by $acresResult acres.
@@ -116,7 +119,8 @@ object Hammurabi {
 
 
   def whatDoYouWantToDoWithYourLand(): Int = {
-    var choice = readInt(s"O great Hammurabi Land currently worth $pricePerAcre and it's ${if (pricePerAcre >= pricePerAcrePreviousYear)
+    var choice = readInt(s"O great Hammurabi Land currently worth $pricePerAcre and it's " +
+      s"${if (pricePerAcre >= pricePerAcrePreviousYear)
       "more expensive than the previous year" else "cheaper than the previous year" }.\n" +
       " What do you want great Hammurabi, buy or shell? Press 1 to buy, 2 to sell, or 0 to continue.\n")
     choice match {

@@ -14,7 +14,9 @@ object Hammurabi {
   var plagueDeaths = 0
   var pricePerAcrePreviousYear : Int = pricePerAcre //Hammurabi acreMarket
   var startingPopulation : Int = population  //For reports
-  var startingAcres : Int = acresOwned      // For reports
+  var startingAcres  = 1000      // For reports
+  var plagueCount = 0   //For reports
+
 
   def printIntroductoryMessage (): Unit = {
     println("""Congratulations, you are the newest ruler of ancient Samaria, elected
@@ -40,6 +42,7 @@ object Hammurabi {
     for(i <- 1 to 10) {
 
 
+
       println(
         s"""O great Hammurabi!
            |You are in year $i of your ten year rule.
@@ -50,14 +53,17 @@ object Hammurabi {
            | Rats destroyed $rats_ate bushels, leaving $bushelsInStorage bushels in storage.
            | The city owns $acresOwned acres of land.
            | Land is currently worth $pricePerAcre bushels pre acre.
-           | There were $plagueDeaths from the plague.
+           | Previous year cost $pricePerAcrePreviousYear.
+           | There were $plagueDeaths deaths from the plague.
          """.stripMargin)
 
-
-      acresOwned += whatDoYouWantToDoWithYourLand()
+      acresOwned+= whatDoYouWantToDoWithYourLand()
+      println("we own "+acresOwned+" acres")
       if(hammurabiFailedAllHisPeople(howMuchGrainForThePeople())){
         println("You are the worst Hammurabi ever. Get out from our city")
         return
+      }else{
+
       }
       plague()
       harvestResults(howManyAcresToPlant())
@@ -67,6 +73,27 @@ object Hammurabi {
 
 
     }
+
+
+    // Results
+    var acresResult : Int = acresOwned - startingAcres
+
+    println(
+      """Good job!!!
+        |You finished the game.
+        |But lets see your results as Hammurabi.
+        |""".stripMargin)
+    if(plagueCount * 10 >= 20 )
+      println(s"Plague mess up you game.${if(acresResult >0) " Fortunately" else " Unfortunately" } \n" +
+        s" you${if(acresResult >0) " managed to increase your land by"+acresResult+" acres. You where a successful Hammurabi. \n "
+        else " didn't manage to increase your land and you failed as Hammurabi." }  ")
+    if(plagueCount * 10 < 20  && population < 1.3 * startingPopulation || acresOwned < 1.5 * startingAcres) println("You failed as Hammurabi, please try again")
+   if(plagueCount * 10 < 20 && population > 1.3 * startingPopulation || acresOwned > 1.5 * startingAcres) {
+     println(
+       s"""You increased your land by $acresResult acres.
+          |${population - 100} people moved to your city because they heard that you are a great Hammurabi.
+          |You are one of the greatest Hammurabi ever lived!!!""".stripMargin)
+   }
 
 
   }
@@ -89,23 +116,23 @@ object Hammurabi {
 
 
   def whatDoYouWantToDoWithYourLand(): Int = {
-    var choice = readInt(s"O great Hammurabi Land currently worth $pricePerAcre and it's ${if (pricePerAcre - pricePerAcrePreviousYear >= 0)
+    var choice = readInt(s"O great Hammurabi Land currently worth $pricePerAcre and it's ${if (pricePerAcre >= pricePerAcrePreviousYear)
       "more expensive than the previous year" else "cheaper than the previous year" }.\n" +
       " What do you want great Hammurabi, buy or shell? Press 1 to buy, 2 to sell, or 0 to continue.\n")
     choice match {
       case 1 =>  askHowMuchLandToBuy(bushelsInStorage,pricePerAcre)
-      case 2 =>  askHowMuchLandToSell(bushelsInStorage)
+      case 2 =>  askHowMuchLandToSell(acresOwned, pricePerAcre)
       case _ =>  0
     }
   }
-  def askHowMuchLandToSell(acresOwned: Int):Int = {
+  def askHowMuchLandToSell(owned: Int, prices: Int):Int = {
 
     var acresToSell = readInt("How many acres do you want sell?\n")
-    while(acresToSell > acresOwned ) {
-      acresToSell = readInt(s"But you own only $acresOwned acres. How many of them do you want to sell?\n")
+    while(acresToSell >= owned ) {
+      acresToSell = readInt(s"But you own only $owned acres. How many of them do you want to sell?\n")
     }
-    bushelsInStorage += acresToSell * pricePerAcre
-    acresToSell
+    bushelsInStorage += acresToSell * prices
+    -acresToSell
   }
 
   def askHowMuchLandToBuy(bushels : Int, price : Int):Int = {
@@ -114,7 +141,7 @@ object Hammurabi {
       println("O Great Hammurabi, we have but " +bushels+ "bushels of grain!\n")
       acresToBuy = readInt("How many acre will you buy?\n")
     }
-    bushelsInStorage -= acresToBuy * pricePerAcre
+    bushelsInStorage -= acresToBuy * price
     acresToBuy
   }
 
@@ -130,19 +157,22 @@ object Hammurabi {
 
   //Results of Hammurabi's actions
 
-  def plague(): Int = {
+  def plague(): Unit = {
 
     if(Random.nextInt(100)+1 <= 15) {
       population /= 2
       plagueDeaths = population
+      plagueCount+=1
+    }else {
+      plagueDeaths = 0
     }
-    plagueDeaths = 0
-    population
+
   }
 
   def hammurabiFailedAllHisPeople(result :  Int ): Boolean = {
 
     if(result/20 >= population/2) {
+      starved = population - result/20
       population = result/20
       return false
     }
@@ -153,9 +183,9 @@ object Hammurabi {
   //are affected from other decisions and events.
   def howManyCameToTheCity(): Int = {
 
-    var newCitizens =  (20 * acresOwned + bushelsInStorage) / (100 * population) + 1
-    population+= newCitizens
-    newCitizens
+    immigrants =  (20 * acresOwned + bushelsInStorage) / (100 * population) + 1
+    population+= immigrants
+    immigrants
   }
 
   def harvestResults(acresPlanted : Int): Int = {
@@ -167,9 +197,13 @@ object Hammurabi {
 
   def ratProblems() : Int = {
     if(Random.nextInt(100)+1 <= 40) {
-      rats_ate = Random.nextInt(20)+10
+      rats_ate = ((Random.nextInt(20)+10)* bushelsInStorage)/100
+      bushelsInStorage-= rats_ate
+
+    }else {
+      rats_ate = 0
     }
-    bushelsInStorage-=rats_ate
+
     rats_ate
   }
 

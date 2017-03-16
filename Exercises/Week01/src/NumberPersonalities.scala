@@ -4,18 +4,17 @@ object NumberPersonalities  {
   val limit = 100
 
   def main(args: Array[String]): Unit ={
-    /*for(i <- 1 to limit) {
+    for(i <- 1 to limit) {
      println(s"$i  ${if (isPrime(i)) "p, " else "c, "}" +
        s"${if(isHappy(i))"h, "else "u, "}" +
-       s"${if(triangular(i))"t, "else "not t"}")
+       s"${if(isTriangular(i))"t, "else "not t, "}" +
+       s"${if(isSquare(i))"s, "else "not s, "}" +
+       s"${if(isSmug(i))"smug, "else "not smug, "}")
 
 
-    }*/
-
-    for (i <- 1 to 100){
-
-      println(s"$i ${if(isSquare(i))"s, "else "not s, "}")
     }
+
+
 
 
 
@@ -71,6 +70,21 @@ object NumberPersonalities  {
   }
 
 
+  def isSmug(n: Int): Boolean = {
+
+    var remainder = 1
+    var square = 0
+    var num = 1
+    while(remainder >square){
+      square = num * num
+      remainder = n - square
+      num+=1
+    }
+
+    if(remainder == 0) return false
+    isSquare(remainder)
+
+  }
 
 
 }

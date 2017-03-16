@@ -6,10 +6,12 @@ object NumberPersonalities  {
   def main(args: Array[String]): Unit ={
     for(i <- 1 to limit) {
      println(s"$i  ${if (isPrime(i)) "p, " else "c, "}" +
-       s"${if(isHappy(i))"h, "else "u"}")
+       s"${if(isHappy(i))"h, "else "u, "}" +
+       s"${if(triangular(i))"t, "else "not t"}")
 
 
     }
+
 
   }
 
@@ -17,7 +19,7 @@ object NumberPersonalities  {
     if(n == 1){
       return false
     }
-   for(i <- 2 until n-1; if n%i ==0){
+   for(i <- 2 until n-1; if n%i ==0) {
      return false
    }
     true
@@ -40,6 +42,18 @@ object NumberPersonalities  {
     if(result == 4) found = false
     found
 
+  }
+  def triangular(n: Int): Boolean = {
+    var k = n
+    var subtract = 1
+    var found = false
+    while(k>0) {
+      k-=subtract
+      subtract+=1
+    }
+    if(k == 0) found = true
+    if(k < 0) found = false
+    found
   }
 
 

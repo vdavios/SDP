@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e190b4bd-9052-45b8-8c57-65e03770b816" name="Default" comment="Hammurabi_Stock_Market&#10;">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/NumberPersonalities.scala" />
+    <list default="true" id="e190b4bd-9052-45b8-8c57-65e03770b816" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Hammurabi.scala" afterPath="$PROJECT_DIR$/src/Hammurabi.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/NumberPersonalities.scala" afterPath="$PROJECT_DIR$/src/NumberPersonalities.scala" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -53,8 +52,8 @@
       <file leaf-file-name="NumberPersonalities.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/NumberPersonalities.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="529">
-              <caret line="23" column="3" lean-forward="true" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
+            <state relative-caret-position="1012">
+              <caret line="44" column="3" lean-forward="false" selection-start-line="44" selection-start-column="3" selection-end-line="44" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -691,7 +690,7 @@
       <workItem from="1489503127660" duration="23712000" />
       <workItem from="1489567269819" duration="11419000" />
       <workItem from="1489605585993" duration="9610000" />
-      <workItem from="1489653666332" duration="8210000" />
+      <workItem from="1489653666332" duration="9692000" />
     </task>
     <task id="LOCAL-00001" summary="First exercise">
       <created>1489503242861</created>
@@ -749,11 +748,18 @@
       <option name="project" value="LOCAL" />
       <updated>1489579320822</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Fixed some bugs for hammurabi,&#10;Prime numbers and happy numbers added to NumberPersonalities&#10;">
+      <created>1489663440467</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1489663440467</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53009000" />
+    <option name="totallyTimeSpent" value="54491000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2560" height="1413" extended-state="6" />
@@ -805,7 +811,8 @@
     <MESSAGE value="Creating Packages" />
     <MESSAGE value="Removed unnecessary packages&#10;" />
     <MESSAGE value="Hammurabi_Stock_Market&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Hammurabi_Stock_Market&#10;" />
+    <MESSAGE value="Fixed some bugs for hammurabi,&#10;Prime numbers and happy numbers added to NumberPersonalities&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed some bugs for hammurabi,&#10;Prime numbers and happy numbers added to NumberPersonalities&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -944,8 +951,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/NumberPersonalities.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="23" column="3" lean-forward="true" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
+        <state relative-caret-position="1012">
+          <caret line="44" column="3" lean-forward="false" selection-start-line="44" selection-start-column="3" selection-end-line="44" selection-end-column="3" />
           <folding />
         </state>
       </provider>

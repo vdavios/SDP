@@ -83,7 +83,7 @@ object Hammurabi {
         |You finished the game.
         |But lets see your results as Hammurabi.
         |""".stripMargin)
-    
+
     if(plagueCount * 10 >= 20 )
       println(s"Plague mess up you game.${if(acresResult >0) " Fortunately" else " Unfortunately" } \n" +
         s" you${if(acresResult >0) " managed to increase your land by"+acresResult+" acres. " +

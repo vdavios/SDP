@@ -9,14 +9,15 @@ object NumberPersonalities  {
        s"${if(isHappy(i))"h, "else "u, "}" +
        s"${if(isTriangular(i))"t, "else "not t, "}" +
        s"${if(isSquare(i))"s, "else "not s, "}" +
-       s"${if(isSmug(i))"smug, "else "not smug, "}")
+       s"${if(isSmug(i))"smug, "else "not smug, "}" +
+       s"${if(isHonest(i))"ht, "else "dish, "}" +
+       s"${if(isPronic(i))"pr, "else "not pr, "}" +
+       s"${if(isPerfect(i))"perfect, "else "not perfect, "}" +
+       s"${if(isDeficient(i))"def, "else "not def, "}" +
+       s"${if(isAbundant(i))"abundant."else "not abundant."}")
 
 
     }
-
-
-
-
 
   }
   def isPrime(n: Int): Boolean = {
@@ -84,6 +85,44 @@ object NumberPersonalities  {
     if(remainder == 0) return false
     isSquare(remainder)
 
+  }
+
+  def isHonest(n: Int): Boolean = {
+    var k = 1
+    while(n/k > k){
+      k+=1
+    }
+    if(n/k == k) return n == k * k
+     true
+  }
+  def isPronic (n: Int): Boolean = {
+    var k = 1
+    while(n> k * (k + 1)){
+      k+=1
+    }
+     n == k * (k +1)
+  }
+
+  def sumOfPositiveDivisorOf(n :Int ): Int  = {
+    var i = 2
+    var sum = 1
+    while(i < n){
+      if(n/i * i == n)
+        sum+=n/i
+      i+=1
+    }
+    sum
+  }
+
+  def isDeficient(n: Int): Boolean = {
+    n > sumOfPositiveDivisorOf(n)
+  }
+  def isPerfect(n: Int): Boolean = {
+    n == sumOfPositiveDivisorOf(n)
+  }
+
+  def isAbundant(n: Int): Boolean = {
+    n < sumOfPositiveDivisorOf(n)
   }
 
 

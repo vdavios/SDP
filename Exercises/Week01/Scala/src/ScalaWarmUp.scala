@@ -1,3 +1,6 @@
+
+
+
 object ScalaWarmUp extends App {
 
   //val num = readLine("Give me an integer please \n")

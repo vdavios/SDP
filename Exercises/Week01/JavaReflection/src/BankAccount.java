@@ -4,6 +4,8 @@ public class BankAccount {
   private float balance;
 
 
+
+
   public void deposit(float amount) {
     this.balance += amount ;
   }
@@ -13,7 +15,7 @@ public class BankAccount {
   }
 
 
-  BankAccount() {
+ public BankAccount() {
     balance = 100;
   }
 }

@@ -22,17 +22,23 @@ public class Reflection {
       }
       //Constructors
       Constructor[] constructors = myClass.getDeclaredConstructors();
-
+      Constructor construct= null;
       for(Constructor constructor : constructors){
 
         System.out.println("Constructor Name: "+ constructor.getName()+ " is " +
                 Modifier.toString(constructor.getModifiers())+ " and has "+ Arrays.toString(constructor.getParameterTypes())
                 + " as parameters");
+        
+        if(constructor.getParameterTypes().length >=2){
+          construct = constructor;
+        }
         System.out.println();
       }
 
       //Creating an object
-      Object constructor = myClass.getDeclaredConstructor(String.class, int.class).newInstance("first dog",5);
+      if(construct!=null) {
+        Object constructor = construct.newInstance("first dog", 5);
+      }
 
       //Fields
       Field[] fields = myClass.getDeclaredFields();
@@ -52,7 +58,7 @@ public class Reflection {
       }
 
 
-    } catch (ClassNotFoundException | IllegalAccessException | NoSuchMethodException |
+    } catch (ClassNotFoundException | IllegalAccessException |
             InstantiationException | InvocationTargetException e) {
       e.printStackTrace();
     }

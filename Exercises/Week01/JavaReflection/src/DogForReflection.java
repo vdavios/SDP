@@ -1,14 +1,15 @@
+import java.util.ArrayList;
 
 public class DogForReflection implements Animal {
 
   private String dogName ;
   private int dogAge;
-
+  private ArrayList<Animal> yo;
   public DogForReflection(String name, int age) {
     setName(name);
     setAge(age);
   }
-  //private DogForReflection(){}
+  private DogForReflection(){}
 
   public String getName () {
     return dogName;

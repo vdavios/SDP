@@ -1,4 +1,5 @@
 import java.lang.reflect.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Reflection {
@@ -28,7 +29,7 @@ public class Reflection {
         System.out.println("Constructor Name: "+ constructor.getName()+ " is " +
                 Modifier.toString(constructor.getModifiers())+ " and has "+ Arrays.toString(constructor.getParameterTypes())
                 + " as parameters");
-        
+
         if(constructor.getParameterTypes().length >=2){
           construct = constructor;
         }
@@ -45,6 +46,9 @@ public class Reflection {
       for(Field field : fields) {
         System.out.println(field.getName()+ " is " + Modifier.toString(field.getModifiers()));
         System.out.println();
+        System.out.println(field.getType());
+
+
       }
 
       System.out.println();

@@ -159,9 +159,10 @@ object ScalaBasics {
    */
   def isPalindrome(s: String): Boolean = {
 
-    val allLowerCase = s.trim.toLowerCase()
-    val normalized = allLowerCase.replaceAll("""[\p{Punct}]|\p{Space}""", "")
-    true
+    val removeSpacesPunct = s.replaceAll("""[\p{Punct}]|\p{Space}""", "")
+    val reversed = for (j <- removeSpacesPunct.reverse) yield j
+     removeSpacesPunct.equalsIgnoreCase(reversed)
+
   }
 
   /**

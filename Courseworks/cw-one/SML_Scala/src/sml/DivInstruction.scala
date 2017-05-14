@@ -15,6 +15,6 @@ class DivInstruction(label: String, op: String, val result: Int, val op1: Int, v
 }
 
 object DivInstruction {
-  def apply(label: String, op: String, result: Int, op1: Int, op2: Int): DivInstruction =
-    new DivInstruction(label, op, result, op1, op2)
+  def apply(label: String, result: Int, op1: Int, op2: Int): DivInstruction =
+    new DivInstruction(label, "div", result, op1, op2)
 }

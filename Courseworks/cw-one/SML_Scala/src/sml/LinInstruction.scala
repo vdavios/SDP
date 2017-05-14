@@ -1,6 +1,6 @@
 package src.sml
 
-case class LinInstruction(label: String, opcode: String, register: Int, value: Int) extends Instruction(label, opcode) {
+case class LinInstruction(label: String, op: String, register: Int, value: Int) extends Instruction(label, op) {
 
   override def execute(m: Machine) =
     m.regs(register) = value

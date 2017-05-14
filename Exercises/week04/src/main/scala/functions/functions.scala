@@ -15,7 +15,7 @@ object Funcs {
   def tail[A](ls: List[A]): List[A] =
     ls match {
       case Nil => throw  new IllegalArgumentException
-      case hd :: tl => tl
+      case _ :: tl => tl
     }
   /**
     * setHead replaces the first value in a list with a given value. If the
@@ -41,9 +41,9 @@ object Funcs {
     * @return a list with the first n elements of ls removed, or an empty list.
     */
   def drop[A](ls: List[A], n: Int): List[A] = ls match {
-    case Nil => List()
-    case hd :: tl => n > ls.length match {
-      case true => List()
+    case Nil => List.apply()
+    case _ :: tl => n > ls.length match {
+      case true => List.apply()
       case false => drop(tl, n-1)
     }
   }
@@ -66,7 +66,7 @@ object Funcs {
 
   // LIST FOLDING
 
-  /*
+  /**
    * foldLeft reduces a list down to a single value by iteratively applying a
    * function over the elements of the list and carrying the cumulative result
    * along.
@@ -77,8 +77,8 @@ object Funcs {
    * @return the final valued.
    */
   def foldLeft[A, B](ls: List[A], z: B)(f: (B, A) => B): B = ls match {
-    case hd :: tl => foldLeft(tl, f(z,hd))(f)
     case Nil => z
+    case hd :: tl => foldLeft(tl, f.apply(z,hd))(f)
   }
 
   /**
@@ -105,18 +105,18 @@ object Funcs {
 
   def length[A](ls: List[A]): Int = ls match {
     case Nil => 0
-    case hd :: tl => 1 + length(tl)
+    case _ :: tl => 1 + length(tl)
   }
 
   def reverse[A](ls: List[A]): List[A] = ls match {
     case Nil => Nil
-    case hd :: tl => reverse(tl) ::: List(hd)
+    case hd :: tl => reverse(tl) ::: List.apply(hd)
   }
 
   def flatten[A](ls: List[A]): List[A] = ls match {
     case Nil => Nil
-    case (head: List[A]) :: tail => flatten(head) ::: flatten(tail)
-    case head :: tail => head :: flatten(tail)
+    case (hd : List[A]) :: tail => flatten(hd) ::: flatten(tail)
+    case hd :: tl => hd :: flatten(tl)
   }
 
   // MAP AND FILTER
@@ -146,7 +146,10 @@ object Funcs {
     */
   def filter[A](ls: List[A])(f: A => Boolean): List[A] = ls match {
     case Nil => Nil
-    case hd :: tl => if (f(hd)) hd :: filter(tl)(f) else filter(tl)(f)
+    case hd :: tl => f.apply(hd) match {
+      case true => hd :: filter(tl)(f)
+      case false => filter(tl)(f)
+    }
   }
 
   /**
@@ -162,21 +165,21 @@ object Funcs {
     // Two versions - one using pattern matching and recursion
     // The second version also uses pm and recursion but in this case it is "tail recursion"
 
-  // def flatMap[A, B](ls: List[A])(f: A => List[B]): List[B] = ls match {
-  //   case (x::xs) => f(x) ++ flatMap(xs)(f)
-  //   case _ => Nil
-  // }
+   def flatMap[A, B](ls: List[A])(f: A => List[B]): List[B] = ls match {
+      case Nil => Nil
+      case hd :: tl => f.apply(hd) ++ flatMap(tl)(f)
+   }
 
-  import scala.annotation.tailrec
+ // import scala.annotation.tailrec
 
-  def flatMap[A, B](ls: List[A])(f: A => List[B]): List[B] = {
-    @tailrec
-    def helper(result: List[B])(input: List[A])(f: A => List[B]): List[B] = input match {
-      case (x::xs) => helper(result ++ f(x))(xs)(f)
-      case _ => result
-    }
-    helper(List[B]())(ls)(f)
-  }
+ // def flatMap[A, B](ls: List[A])(f: A => List[B]): List[B] = {
+   // @tailrec
+   // def helper(result: List[B])(input: List[A])(f: A => List[B]): List[B] = input match {
+   //   case x :: xs => helper(result ++ f(x))(xs)(f)
+   //   case _ => result
+   // }
+   // helper(List[B]())(ls)(f)
+ // }
 
 
   // COMBINING FUNCTIONS
@@ -212,7 +215,7 @@ object Funcs {
 
   def variance(ls: List[Double]): Double = {
     val mean = sum(ls) / length(ls)
-    val lst = map(ls)(v => pow((v - mean),2))
-    sum(lst) / length(lst)
+    val variance = sum(map(ls)(value => pow(value - mean, 2))) / length(ls)
+    variance
   }
 }

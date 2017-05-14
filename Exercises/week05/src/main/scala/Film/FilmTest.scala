@@ -1,5 +1,8 @@
-package films
+package main.scala.Film
 
+/**
+  * Created by vasileiosdavios on 5/14/17.
+  */
 object FilmTest extends App {
   val eastwood = new Director("Clint", "Eastwood", 1930)
   val mcTiernan = new Director("John", "McTiernan", 1951)

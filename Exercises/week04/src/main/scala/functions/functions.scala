@@ -215,7 +215,7 @@ object Funcs {
 
   def variance(ls: List[Double]): Double = {
     val mean = sum(ls) / length(ls)
-    val variance = sum(map(ls)(value => pow(value - mean, 2))) / length(ls)
-    variance
+    sum(map(ls)(value => pow(value - mean, 2))) / length(ls)
+
   }
 }

@@ -1,0 +1,3 @@
+package Factory
+
+trait Product
